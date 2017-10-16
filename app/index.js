@@ -10,14 +10,14 @@ export const Test = (props) => {
   );
 }
 
-/*
 render((
   <BrowserRouter>
     <Test />
   </BrowserRouter>
 ), document.getElementById('root'));
-*/
 
+/*
 render((
   <Test />
 ), document.getElementById('root'));
+*/
