@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "node server/index.js"
+    "build": "webpack --progress",
+    "build-watch": "webpack --watch --progress",
+    "start": "node server/index.js",
+    "start-watch": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -31,5 +33,8 @@
     "react-router-dom": "^4.2.2",
     "sass-loader": "^6.0.6",
     "webpack": "^3.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
