@@ -1,8 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 export const Test = (props) => {
+  console.log('Test props: ',props);
   return (
     <div>
       <h1>hello world!</h1>
@@ -10,14 +11,22 @@ export const Test = (props) => {
   );
 }
 
+export const Default = (props) => {
+  return (
+    <div>
+      <h1>Default route page</h1>
+    </div>
+  );
+}
+
+const App = () => 
+  <Switch>
+    <Route exact path="/" component={Test}/>
+    <Route component={Default} />
+  </Switch>
+
 render((
   <BrowserRouter>
-    <Test />
+    <App />
   </BrowserRouter>
 ), document.getElementById('root'));
-
-/*
-render((
-  <Test />
-), document.getElementById('root'));
-*/
