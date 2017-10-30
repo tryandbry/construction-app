@@ -1,6 +1,6 @@
 
 const initState = {
-  formState: -1,
+  formState: 0,
 };
 
 export default (state=initState,action) => {
