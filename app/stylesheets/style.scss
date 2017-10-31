@@ -8,4 +8,23 @@ body {
     font-size: 2em;
     overlfow-y: hidden;
   }
+
+  #estimateFooter button {
+    font-size: 1.5em;
+    width: 5.5em;
+    height: 2.5em;
+    border-radius: 0.4em;
+  }
+
+  #estimateFooter .footer-left {
+  }
+
+  #estimateFooter .footer-middle {
+    text-align: center;
+  }
+
+  #estimateFooter .footer-right {
+    text-align: right;
+  }
+
 }

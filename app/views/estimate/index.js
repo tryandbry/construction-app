@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import EstimateSelect from './select';
+import Footer from './footer';
 
 class estimate extends React.Component {
 
@@ -14,8 +15,8 @@ class estimate extends React.Component {
 
     return (
       <div id='estimate' className="container">
-        <h3>Estimate component</h3>
         {pages[formState]}
+        <Footer />
       </div>
     );
   }
