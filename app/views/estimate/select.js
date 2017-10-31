@@ -21,7 +21,11 @@ class select extends React.Component {
   constructor(){
     super();
     this.state = {
-      trades: [],
+      trades: [
+        'Demolition',
+        'Painting',
+        'Flooring',
+      ],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,6 +38,7 @@ class select extends React.Component {
       return collection;
     },[]);
     console.log('handleChange: ',trades);
+    this.setState({trades});
   }
 
   render(){
@@ -47,10 +52,11 @@ class select extends React.Component {
             <select multiple
               className="form-control"
               onChange={this.handleChange}
+              value={this.state.trades}
               id="estimateTrades">
               {trades.map( (trade) => 
                 <option
-                  key={trade}
+                  key={'estimateTrades'+trade}
                 >{trade}</option>
               )}
             </select>
@@ -62,6 +68,13 @@ class select extends React.Component {
                   <th>Selected Trades</th>
                 </tr>
               </thead>
+              <tbody>
+                {this.state.trades.map( (trade) =>
+                <tr key={'selected'+trade}>
+                  <td>{trade}</td>
+                </tr>
+                )}
+              </tbody>
             </table>
           </div>
         </div>
