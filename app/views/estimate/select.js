@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { setTrades } from '../../store/estimate';
+
 const trades = [
   'Demolition',
   'Coutertops & Cabinets',
@@ -18,14 +20,10 @@ const trades = [
 ];
 
 class select extends React.Component {
-  constructor(){
+  constructor(props){
     super();
     this.state = {
-      trades: [
-        'Demolition',
-        'Painting',
-        'Flooring',
-      ],
+      trades: props.trades,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,11 +35,13 @@ class select extends React.Component {
       if(option.selected) collection.push(option.text);
       return collection;
     },[]);
-    console.log('handleChange: ',trades);
-    this.setState({trades});
+    this.setState({trades},() =>
+      this.props.setTrades(this.state.trades)
+    );
   }
 
   render(){
+
     return (
       <div id='estimateSelect'>
         <div className="row">
@@ -83,6 +83,13 @@ class select extends React.Component {
   }
 }
 
-const mapState = (state) => state;
+//const mapState = (state) => state;
+const mapState = (state) => ({
+  trades: state.estimate.trades,
+});
 
-export default connect(mapState)(select);
+const mapDispatch = {
+  setTrades,
+};
+
+export default connect(mapState,mapDispatch)(select);

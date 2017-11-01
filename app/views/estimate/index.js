@@ -9,7 +9,7 @@ class estimate extends React.Component {
   render(){
     const pages = [<EstimateSelect />];
     const formState = this.props.estimate.formState;
-    console.log("formState: ",formState);
+    //console.log("formState: ",formState);
 
     return (
       <div id='estimate' className="container">
