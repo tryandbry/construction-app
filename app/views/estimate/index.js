@@ -7,8 +7,6 @@ import Footer from './footer';
 class estimate extends React.Component {
 
   render(){
-    console.log("estimate component props: ",this.props);
-
     const pages = [<EstimateSelect />];
     const formState = this.props.estimate.formState;
     console.log("formState: ",formState);
