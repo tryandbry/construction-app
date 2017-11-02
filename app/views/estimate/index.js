@@ -5,24 +5,28 @@ import EstimateSelect from './select';
 import EstimateDemolition from './demolition';
 import Footer from './footer';
 
+const pages = {
+  'select': <EstimateSelect />,
+  'Demolition': <EstimateDemolition />,
+};
+
 class estimate extends React.Component {
 
   render(){
-    const pages = [
-      <EstimateSelect />,
-      <EstimateDemolition />,
-    ];
-    const formState = this.props.estimate.formState;
 
     return (
       <div id='estimate' className="container">
-        {pages[formState]}
+        {pages[this.props.currentPage]}
         <Footer />
       </div>
     );
   }
 }
 
-const mapState = (state) => state;
+//const mapState = (state) => state;
+const mapState = (state) => ({
+  //flow: state.estimate.flow,
+  currentPage: state.estimate.currentPage,
+});
 
 export default connect(mapState)(estimate);

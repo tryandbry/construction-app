@@ -1,12 +1,15 @@
 // VERBS
 const NEXT = 'NEXT';
 const PREV = 'PREV';
+const HOME = 'HOME';
 const SELECT_TRADES = 'SELECT_TRADES';
 
+const flowHead = ['select'];
+
 const initState = {
-  formState: 0,
-  formMin: 0,
-  formMax: 5,
+  flow: flowHead.concat(['Demolition','Painting','Flooring']),
+  currentPage: 'select',
+  currentIndex: 0,
   selectedTrades: [
     'Demolition',
     'Painting',
@@ -34,16 +37,24 @@ export default (state=initState,action) => {
   switch(action.type) {
     case SELECT_TRADES:
       newState.selectedTrades = action.trades;
+      newState.flow = flowHead.concat(newState.selectedTrades);
+      newState.currentPage = 'select';
+      break;
+    case HOME:
+      newState.currentIndex = 0;
+      newState.currentPage = 'select';
       break;
     case PREV:
-      state.formState == state.formMin ?
-        newState.formState = 5 :
-        newState.formState -= 1;
+      newState.currentIndex = state.currentIndex > 0 ?
+        state.currentIndex - 1 :
+        state.flow.length - 1;
+      newState.currentPage = state.flow[newState.currentIndex];
       break;
     case NEXT:
-      state.formState == state.formMax ?
-        newState.formState = 0 :
-        newState.formState += 1;
+      newState.currentIndex = state.currentIndex < state.flow.length - 1 ?
+        state.currentIndex + 1 :
+        0;
+      newState.currentPage = state.flow[newState.currentIndex];
       break;
     default:
       return state;
@@ -52,6 +63,7 @@ export default (state=initState,action) => {
 }
 
 // ACTION CREATORS
+const actionHomePage = () =>({ type: HOME });
 const actionNextPage = () =>({ type: NEXT });
 const actionPrevPage = () =>({ type: PREV });
 const actionSelectTrades = (trades) =>({
@@ -60,6 +72,9 @@ const actionSelectTrades = (trades) =>({
 });
 
 // DISPATCHERS
+export const homePage = () =>
+  dispatch => dispatch(actionHomePage());
+
 export const nextPage = () =>
   dispatch => dispatch(actionNextPage());
 

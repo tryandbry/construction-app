@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { prevPage, nextPage } from '../../store/estimate';
+import { homePage, prevPage, nextPage } from '../../store/estimate';
 
 class footer extends React.Component {
   render() {
     console.log('Footer: ',this.props);
 
-    let disableLeft = this.props.formState > this.props.formMin
+    let disableLeft = this.props.currentIndex > 0
       ? false : true;
-    let disableRight = this.props.formState < this.props.formMax
+    let disableRight =
+      this.props.currentIndex < this.props.flow.length - 1
       ? false : true;
 
     return (
@@ -24,6 +25,7 @@ class footer extends React.Component {
         <div className="col-4 footer-middle">
           <button
             className="btn btn-outline-primary"
+            onClick={this.props.homePage}
           >Home
           </button>
         </div>
@@ -41,12 +43,12 @@ class footer extends React.Component {
 }
 
 const mapState = (state) => ({
-  formState: state.estimate.formState,
-  formMin: state.estimate.formMin,
-  formMax: state.estimate.formMax,
+  flow: state.estimate.flow,
+  currentIndex: state.estimate.currentIndex,
 });
 
 const mapDispatch = {
+  homePage,
   prevPage,
   nextPage,
 };
