@@ -4,19 +4,23 @@ import { connect } from 'react-redux';
 import { setTaskQty } from '../../store/demolition';
 
 class demolition extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {
-    };
+    this.state = props.tasks;
 
-    this.handleInput = this.handleInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleInput(e,task) {
-    console.log('handleInput event: ',e);
+  handleChange(event) {
+    let newValue = this.state[event.target.name];
+    newValue.qty = event.target.value;
+    
+    this.setState({[event.target.name]: newValue});
+    this.props.setTaskQty(event.target.name,event.target.value);
   }
 
   render() {
+    const tasks = Object.keys(this.props.tasks);
 
     return (
       <div id="estimateDemolition" className="row">
@@ -33,14 +37,18 @@ class demolition extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.tasks.map( (task) =>
-              <tr>
-                <td>Item</td>
-                <td>Description of Work</td>
-                <td>Quantity</td>
-                <td>Unit</td>
-                <td>Unit Price</td>
-                <td>Cost</td>
+              {tasks.map( (task,i) => 
+              <tr key={task}>
+                <td>{i}</td>
+                <td>{task}</td>
+                <td><DemoInput
+                  task={task}
+                  value={this.state[task].qty}
+                  handleChange={this.handleChange}
+                /></td>
+                <td>{this.state[task].unit}</td>
+                <td>{this.state[task].unitPrice}</td>
+                <td>{this.state[task].cost}</td>
               </tr>
               )}
             </tbody>
@@ -62,8 +70,16 @@ const mapDispatch = {
 export default connect(mapState,mapDispatch)(demolition);
 
 
-const demoInput = (task,value,handleInput) => 
-  <input
-    value={value}
-    onChange={(e,task) => handleInput(e,task)}
-  </input>
+const DemoInput = ({task,value,handleChange}) => {
+  return (
+    <form>
+      <input
+        className="form-control"
+        type="text"
+        name={task}
+        value={value}
+        onChange={handleChange}
+      />
+    </form>
+  );
+}

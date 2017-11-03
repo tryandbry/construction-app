@@ -31,11 +31,12 @@ const initState = {
 };
 
 export default (state=initState,action) => {
+  console.log('Demolition reducer state: ',state);
   const newState = Object.assign({},state);
   switch(action.type) {
     case SET_QTY:
       if(state.tasks[action.task]) {
-        newState.tasks[action.task] = action.qty;
+        newState.tasks[action.task].qty = action.qty;
         break;
       }
       else {
