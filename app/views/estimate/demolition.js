@@ -12,11 +12,13 @@ class demolition extends React.Component {
   }
 
   handleChange(event) {
-    let newValue = this.state[event.target.name];
-    newValue.qty = event.target.value;
-    
-    this.setState({[event.target.name]: newValue});
-    this.props.setTaskQty(event.target.name,event.target.value);
+    if(isInputClean(this.state[event.target.name],event.target.value)) {
+      let newValue = this.state[event.target.name];
+      newValue.qty = Number(event.target.value);
+      
+      this.setState({[event.target.name]: newValue});
+      this.props.setTaskQty(event.target.name,event.target.value);
+    }
   }
 
   render() {
@@ -82,4 +84,9 @@ const DemoInput = ({task,value,handleChange}) => {
       />
     </form>
   );
+}
+
+const isInputClean = (current,proposed) => {
+  const r = new RegExp(/[^0-9]/);
+  return !r.test(proposed)
 }
