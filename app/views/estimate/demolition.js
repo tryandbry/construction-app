@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { isNumeric, printPrice } from '../../helpers/estimate';
 import { setTaskQty } from '../../store/demolition';
 
 class demolition extends React.Component {
@@ -12,9 +13,9 @@ class demolition extends React.Component {
   }
 
   handleChange(event) {
-    if(isInputClean(this.state[event.target.name],event.target.value)) {
+    if(isNumeric(event.target.value)) {
       let newValue = this.state[event.target.name];
-      newValue.qty = Number(event.target.value);
+      newValue.qty = event.target.value;
       
       this.setState({[event.target.name]: newValue});
       this.props.setTaskQty(event.target.name,event.target.value);
@@ -26,6 +27,10 @@ class demolition extends React.Component {
 
     return (
       <div id="estimateDemolition" className="row">
+        <div className="col-12">
+          <h2>Demolition</h2>
+          <h3>Enter estimate</h3>
+        </div>
         <div className="col-12">
           <table className="table">
             <thead>
@@ -49,8 +54,8 @@ class demolition extends React.Component {
                   handleChange={this.handleChange}
                 /></td>
                 <td>{this.state[task].unit}</td>
-                <td>{this.state[task].unitPrice}</td>
-                <td>{this.state[task].cost}</td>
+                <td>{printPrice(this.state[task].unitPrice)}</td>
+                <td>{printPrice(this.state[task].cost)}</td>
               </tr>
               )}
             </tbody>
@@ -71,22 +76,14 @@ const mapDispatch = {
 
 export default connect(mapState,mapDispatch)(demolition);
 
-
 const DemoInput = ({task,value,handleChange}) => {
   return (
-    <form>
-      <input
-        className="form-control"
-        type="text"
-        name={task}
-        value={value}
-        onChange={handleChange}
-      />
-    </form>
+    <input
+      className="form-control"
+      type="text"
+      name={task}
+      value={value}
+      onChange={handleChange}
+    />
   );
-}
-
-const isInputClean = (current,proposed) => {
-  const r = new RegExp(/[^0-9]/);
-  return !r.test(proposed)
 }
