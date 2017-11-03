@@ -27,40 +27,39 @@ class select extends React.Component {
   render(){
 
     return (
-      <div id='estimateSelect'>
-        <div className="row">
-          <h2 className="col-12">New Estimate</h2>
-          <h3 className="col-12">What trades should be included?</h3>
-          <div className="form-group col-6">
-            <label htmlFor="estimateTrades">Trades</label>
-            <select multiple
-              className="form-control"
-              onChange={this.handleChange}
-              value={this.state.selectedTrades}
-              id="estimateTrades">
-              {this.props.trades.map( (trade) => 
-                <option
-                  key={'estimateTrades'+trade}
-                >{trade}</option>
+      <div id='estimateSelect' className="row">
+        <div className="col-12">
+          <h2>New Estimate</h2>
+          <h3>What trades should be included?</h3>
+        </div>
+        <div className="form-group col-6">
+          <select multiple
+            className="form-control"
+            onChange={this.handleChange}
+            value={this.state.selectedTrades}
+            id="estimateTrades">
+            {this.props.trades.map( (trade) => 
+              <option
+                key={'estimateTrades'+trade}
+              >{trade}</option>
+            )}
+          </select>
+        </div>
+        <div className="col-6">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Selected Trades</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.selectedTrades.map( (trade) =>
+              <tr key={'selected'+trade}>
+                <td>{trade}</td>
+              </tr>
               )}
-            </select>
-          </div>
-          <div className="col-6">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Selected Trades</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.selectedTrades.map( (trade) =>
-                <tr key={'selected'+trade}>
-                  <td>{trade}</td>
-                </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+            </tbody>
+          </table>
         </div>
       </div>
     );

@@ -31,7 +31,6 @@ const initState = {
 };
 
 export default (state=initState,action) => {
-  console.log('Demolition reducer state: ',state);
   const newState = Object.assign({},state);
   switch(action.type) {
     case SET_QTY:
