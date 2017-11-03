@@ -10,23 +10,23 @@ const taskObj = function (qty,unit,unitPrice,cost) {
 
 const initState = {
   tasks: {
-    'Demo Dumpters': new taskObj(0,'ea',275,0),
-    'Demo Walls': new taskObj(0,'ea',275,0),
-    'Demo Ceiling': new taskObj(0,'ea',275,0),
-    'Demo Hardwood Floor': new taskObj(0,'ea',275,0),
-    'Demo Carpet': new taskObj(0,'ea',275,0),
-    'Demo Floor tile': new taskObj(0,'ea',275,0),
-    'Demo Wall tile': new taskObj(0,'ea',275,0),
-    'Remove cabinets': new taskObj(0,'ea',275,0),
-    'Remove countertops': new taskObj(0,'ea',275,0),
-    'Handling to dumpster (if applicable)': new taskObj(0,'ea',275,0),
-    'Truck rental for haul away': new taskObj(0,'ea',275,0),
-    'Plumbing demo in plumbing': new taskObj(0,'ea',275,0),
-    'HVAC demo in HVAC': new taskObj(0,'ea',275,0),
-    'Electrical demo in Electrical': new taskObj(0,'ea',275,0),
-    'Remove 1/4 Round': new taskObj(0,'ea',275,0),
-    'Protection of finishes': new taskObj(0,'ea',275,0),
-    'CONTINGENCY': new taskObj(0,'ea',275,0),
+    'Demo Dumpsters': new taskObj("",'ea',275,0),
+    'Demo Walls': new taskObj("",'lf',0.85,0),
+    'Demo Ceiling': new taskObj("",'sf',1.15,0),
+    'Demo Hardwood Floor': new taskObj("",'sf',1.75,0),
+    'Demo Carpet': new taskObj("",'sf',0.75,0),
+    'Demo Floor tile': new taskObj("",'sf',2.25,0),
+    'Demo Wall tile': new taskObj("",'sf',2.25,0),
+    'Remove cabinets': new taskObj("",'lf',20,0),
+    'Remove countertops': new taskObj("",'sf',10,0),
+    'Handling to dumpster (if applicable)': new taskObj("",'lf',100,0),
+    'Truck rental for haul away': new taskObj("",'ea',150,0),
+    'Plumbing demo in plumbing': new taskObj("",'','',0),
+    'HVAC demo in HVAC': new taskObj("",'','',0),
+    'Electrical demo in Electrical': new taskObj("",'','',0),
+    'Remove 1/4 Round': new taskObj("",'lf',0.45,0),
+    'Protection of finishes': new taskObj("",'ls',500,0),
+    'CONTINGENCY': new taskObj("",'ls',112,0),
   },
 };
 
@@ -36,7 +36,9 @@ export default (state=initState,action) => {
   switch(action.type) {
     case SET_QTY:
       if(state.tasks[action.task]) {
-        newState.tasks[action.task].qty = action.qty;
+        const task = newState.tasks[action.task];
+        task.qty = action.qty;
+        task.cost = Number(task.qty) * task.unitPrice;
         break;
       }
       else {
