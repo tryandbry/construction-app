@@ -11,20 +11,23 @@ class sidebarNav extends React.Component {
       ? false : true;
 
     return (
-      <div>
+      <div className="btn-group sidebar-nav" role="group">
         <button
-          className="btn btn-outline-primary btn-block"
+          type="button"
+          className="btn btn-secondary"
           disabled={disableLeft}
           onClick={this.props.prevPage}
         >Previous
         </button>
         <button
-          className="btn btn-outline-primary btn-block"
+          type="button"
+          className="btn btn-secondary"
           onClick={this.props.homePage}
         >Home
         </button>
         <button
-          className="btn btn-outline-primary btn-block"
+          type="button"
+          className="btn btn-secondary"
           disabled={disableRight}
           onClick={this.props.nextPage}
         >Next
