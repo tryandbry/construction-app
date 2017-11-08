@@ -31,35 +31,19 @@ class select extends React.Component {
         <div className="col-12">
           <h2>New Estimate</h2>
           <h3>What trades should be included?</h3>
-        </div>
-        <div className="form-group col-6">
-          <select multiple
-            className="form-control"
-            onChange={this.handleChange}
-            value={this.state.selectedTrades}
-            id="estimateTrades">
-            {this.props.trades.map( (trade) => 
-              <option
-                key={'estimateTrades'+trade}
-              >{trade}</option>
-            )}
-          </select>
-        </div>
-        <div className="col-6">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Selected Trades</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.selectedTrades.map( (trade) =>
-              <tr key={'selected'+trade}>
-                <td>{trade}</td>
-              </tr>
+          <div className="form-group">
+            <select multiple
+              className="form-control"
+              onChange={this.handleChange}
+              value={this.state.selectedTrades}
+              id="estimateTrades">
+              {this.props.trades.map( (trade) => 
+                <option
+                  key={'estimateTrades'+trade}
+                >{trade}</option>
               )}
-            </tbody>
-          </table>
+            </select>
+          </div>
         </div>
       </div>
     );

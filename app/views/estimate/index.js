@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import EstimateSelect from './select';
 import EstimateDemolition from './demolition';
 import Sidebar from './sidebar';
-import Footer from './footer';
 
 const pages = {
   'select': <EstimateSelect />,
@@ -30,9 +29,6 @@ class estimate extends React.Component {
             </div>
           </div>
         </main>
-        <footer>
-          <Footer />
-        </footer>
       </div>
     );
   }

@@ -13,29 +13,31 @@ class footer extends React.Component {
       ? false : true;
 
     return (
-      <div id="estimateFooter" className="row">
-        <div className="col-4 footer-left">
-          <button
-            className="btn btn-outline-primary"
-            disabled={disableLeft}
-            onClick={this.props.prevPage}
-          >Previous
-          </button>
-        </div>
-        <div className="col-4 footer-middle">
-          <button
-            className="btn btn-outline-primary"
-            onClick={this.props.homePage}
-          >Home
-          </button>
-        </div>
-        <div className="col-4 footer-right">
-          <button
-            className="btn btn-outline-primary"
-            disabled={disableRight}
-            onClick={this.props.nextPage}
-          >Next
-          </button>
+      <div id="estimateFooter" className="container">
+        <div className="row">
+          <div className="col-4 footer-left">
+            <button
+              className="btn btn-outline-primary"
+              disabled={disableLeft}
+              onClick={this.props.prevPage}
+            >Previous
+            </button>
+          </div>
+          <div className="col-4 footer-middle">
+            <button
+              className="btn btn-outline-primary"
+              onClick={this.props.homePage}
+            >Home
+            </button>
+          </div>
+          <div className="col-4 footer-right">
+            <button
+              className="btn btn-outline-primary"
+              disabled={disableRight}
+              onClick={this.props.nextPage}
+            >Next
+            </button>
+          </div>
         </div>
       </div>
     );

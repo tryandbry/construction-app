@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import SidebarNav from './sidebarNav';
+
 const sidebar = (props) =>
   <div id='sidebar'>
+    <SidebarNav />
     <table className="table">
       <thead>
         <tr>
@@ -24,3 +27,5 @@ const mapState = ({estimate}) => ({
 });
 
 export default connect(mapState)(sidebar);
+
+import { homePage, prevPage, nextPage } from '../../store/estimate';
