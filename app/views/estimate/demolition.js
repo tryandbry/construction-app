@@ -24,6 +24,7 @@ class demolition extends React.Component {
 
   render() {
     const tasks = Object.keys(this.props.tasks);
+    const subtotal = tasks.reduce( (sum,task) => sum + this.state[task].cost , 0);
 
     return (
       <div id="estimateDemolition">
@@ -57,6 +58,13 @@ class demolition extends React.Component {
                   <td>{printPrice(this.state[task].cost)}</td>
                 </tr>
                 )}
+                <tr>
+                  <th />
+                  <th />
+                  <th />
+                  <th colSpan="2">Subtotal</th>
+                  <th>{printPrice(subtotal)}</th>
+                </tr>
               </tbody>
             </table>
           </div>
