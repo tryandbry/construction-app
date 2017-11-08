@@ -19,12 +19,12 @@ class estimate extends React.Component {
         <header>
           <Header />
         </header>
-        <main className="container">
+        <main className="container container-custom">
           <div className="row">
-            <div className="col-2">
+            <div className="col-3">
               <Sidebar />
             </div>
-            <div className="col-10">
+            <div className="col-9">
               {pages[this.props.currentPage]}
             </div>
           </div>
