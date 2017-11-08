@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import EstimateSelect from './select';
 import EstimateDemolition from './demolition';
+import Sidebar from './sidebar';
 import Footer from './footer';
 
 const pages = {
@@ -15,9 +16,23 @@ class estimate extends React.Component {
   render(){
 
     return (
-      <div id='estimate' className="container">
-        {pages[this.props.currentPage]}
-        <Footer />
+      <div id='estimate'>
+        <header>
+          <Header />
+        </header>
+        <main className="container">
+          <div className="row">
+            <div className="col-2">
+              <Sidebar />
+            </div>
+            <div className="col-10">
+              {pages[this.props.currentPage]}
+            </div>
+          </div>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }
@@ -30,3 +45,10 @@ const mapState = (state) => ({
 });
 
 export default connect(mapState)(estimate);
+
+const Header = () => 
+  <div> 
+    <nav className="navbar navbar-light bg-light">
+      <span className="navbar-brand mb-0 h1" href="#">Builder</span>
+    </nav>
+  </div>
