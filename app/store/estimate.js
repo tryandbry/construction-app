@@ -5,9 +5,15 @@ const HOME = 'HOME';
 const SELECT_TRADES = 'SELECT_TRADES';
 
 const flowHead = ['select'];
+const flowTail = ['review'];
 
 const initState = {
-  flow: flowHead.concat(['Demolition','Painting','Flooring']),
+  flow: flowHead.concat([
+    'Demolition',
+    'Painting',
+    'Flooring',
+    ...flowTail,
+  ]),
   currentPage: 'select',
   currentIndex: 0,
   selectedTrades: [
@@ -37,7 +43,10 @@ export default (state=initState,action) => {
   switch(action.type) {
     case SELECT_TRADES:
       newState.selectedTrades = action.trades;
-      newState.flow = flowHead.concat(newState.selectedTrades);
+      newState.flow = flowHead.concat([
+        ...newState.selectedTrades,
+        ...flowTail,
+      ]);
       newState.currentPage = 'select';
       break;
     case HOME:
