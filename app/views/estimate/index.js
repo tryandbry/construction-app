@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Sidebar from './sidebar';
 import EstimateSelect from './select';
 import EstimateDemolition from './demolition';
-import Sidebar from './sidebar';
+import EstimateReview from './review';
 
 const pages = {
   'select': <EstimateSelect />,
   'Demolition': <EstimateDemolition />,
+  'review': <EstimateReview />,
 };
 
 class estimate extends React.Component {
