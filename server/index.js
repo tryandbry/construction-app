@@ -22,3 +22,17 @@ db.on('open',function(){
     console.log(`listening on port ${PORT}`);
   });
 });
+
+/*
+db.onAsync('error')
+.then( console.error.bind(console, 'db connection error'))
+.catch( console.error.bind(console, 'db connection error, unknown'));
+
+db.onAsync('open')
+.then( () => {
+  app.listen(PORT,function(){
+    console.log(`listening on port ${PORT}`);
+  });
+})
+.catch( console.error.bind(console, 'db connection success, but error'));
+*/
