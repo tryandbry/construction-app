@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 //var models = require('./models');
 
-const { mongodb_uri } = require('../../config/secrets');
+const { mongoDbUri } = require('../../config/secrets');
 
-mongoose.connect(mongodb_uri, {
+mongoose.connect(mongoDbUri, {
   useMongoClient: true,
 });
 
