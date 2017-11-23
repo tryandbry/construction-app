@@ -1,9 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-// TODO: use environment variables to point to pathname
-const pathname = path.resolve('/home/bryan/projects/construction-app/server/db/models');
-//console.log('pathname: ' + pathname);
+const pathname = path.resolve(process.env.APPROOT,'server/db/models');
 
 const getName = (model) => {
   let name = model.split('.')[0];
