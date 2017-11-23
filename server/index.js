@@ -10,6 +10,8 @@ app.use(express.static(path.resolve(__dirname,'../node_modules/bootstrap/dist/js
 app.use(express.static(path.resolve(__dirname,'../node_modules/jquery/dist')));
 app.use(express.static(path.resolve(__dirname,'../node_modules/popper.js/dist/umd')));
 
+app.use('/api/v1',require('./api/v1'));
+
 app.get('/*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
 });
